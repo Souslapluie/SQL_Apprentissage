@@ -1,16 +1,20 @@
 <?php
 
 
+include('index.html');
 
 
 
 
-
-$BDD = new PDO('mysql:host=localhost;dbname=GestionLibrairie2','root','');
+$BDD = new PDO('mysql:host=localhost;dbname=gestionlibrairie2','root','');
+#private PDO::query ( string $BDD ) : PDOStatement
 
 $Requete1 = $BDD->query('SELECT * FROM Fournisseurs');
+$BDD->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 
-	while ($Data1 = $Requete1->fetch()) {
+trigger_error("PDO errorInfo: ".$BDD->errorInfo());
+
+	while ($Data1 = $Requete1 -> fetch()) {
 
 		echo '<p>'.$Data1['Code_fournisseur'].'</p>';
 		echo '<p>'.$Data1['raison_sociale'].'</p>';
@@ -26,15 +30,6 @@ $Requete1 = $BDD->query('SELECT * FROM Fournisseurs');
 	}
 
 $Requete1->closeCursor();
-
-
-
-
-
-
-
-
-
 
 
 ?>
